@@ -1,10 +1,10 @@
 import * as PIXI from 'pixi.js'
 
 export class Player extends PIXI.Sprite {
-    xspeed = 0
-    yspeed = 0
-    moveTexture: PIXI.Texture;
-    idleTexture: PIXI.Texture;
+    private xspeed = 0
+    private yspeed = 0
+    public moveTexture: PIXI.Texture;
+    public idleTexture: PIXI.Texture;
 
     constructor(texture: PIXI.Texture) {
         super(texture)

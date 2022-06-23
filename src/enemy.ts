@@ -1,10 +1,10 @@
 import * as PIXI from 'pixi.js'
 
 export class Enemy extends PIXI.Sprite {
-    deadTexture: PIXI.Texture;
-    fishTexture: PIXI.Texture;
-    alive = true;
-    speed: number;
+    public deadTexture: PIXI.Texture;
+    public fishTexture: PIXI.Texture;
+    public alive = true;
+    private speed: number;
 
     constructor(texture: PIXI.Texture, deadTexture: PIXI.Texture) {
         super(texture)

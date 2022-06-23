@@ -11,19 +11,15 @@ import backgroundImage from "./images/background.png"
 // Create Game class
 //
 class Game {
-    enemy: Enemy
-    mylistener: EventListener
-    pixi: PIXI.Application
-    loader: PIXI.Loader
-    enemies: Enemy[] = []
-    player: Player;
+    private enemy: Enemy
+    public pixi: PIXI.Application
+    public loader: PIXI.Loader
+    private enemies: Enemy[] = []
+    private player: Player;
 
     constructor() {
         this.pixi = new PIXI.Application({ width: 800, height: 450 })
         document.body.appendChild(this.pixi.view)
-
-        this.mylistener = (e: Event) => this.logMessage(e)
-        window.addEventListener('click', this.mylistener)
 
         //loader
         this.pixi.loader.add('enemyTexture', enemyImage)
@@ -33,13 +29,7 @@ class Game {
         this.pixi.loader.load(() => this.loadCompleted())
     }
 
-    //hier zet hij de event listeners uit
-    logMessage(e: Event) {
-        console.log("niet meer")
-        window.removeEventListener("click", this.mylistener)
-    }
-
-    loadCompleted() {
+    private loadCompleted() {
         const background = new PIXI.TilingSprite(this.pixi.loader.resources["backgroundTexture"].texture!,
             this.pixi.screen.width,
             this.pixi.screen.height)
@@ -68,7 +58,7 @@ class Game {
         this.pixi.stage.addChild(this.player)
     }
 
-    update(delta: number) {
+    public update(delta: number) {
         for (let enemy of this.enemies) {
             enemy.update(delta)
             if (this.collision(this.player, enemy)) {
@@ -85,7 +75,7 @@ class Game {
         this.player.update(delta)
     }
 
-    collision(sprite1: PIXI.Sprite, sprite2: PIXI.Sprite) {
+    public collision(sprite1: PIXI.Sprite, sprite2: PIXI.Sprite) {
         const bounds1 = sprite1.getBounds()
         const bounds2 = sprite2.getBounds()
 
